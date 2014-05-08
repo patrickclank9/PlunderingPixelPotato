@@ -9,7 +9,6 @@ import MainCharacter.PixelPotato;
 import jgame.GContainer;
 import jgame.GSprite;
 import jgame.ImageCache;
-import jgame.SoundManager;
 
 public class PPPGameView extends GContainer{
 	
@@ -24,12 +23,12 @@ public class PPPGameView extends GContainer{
 	public void initScrollGameView() {
 		GSprite bk = new GSprite(ImageCache.getImage("background.png"));
 		bk.setAnchorTopLeft();
-		addAt(bk, -1880,0);
-		PlatformController hc = new PlatformController(PlatformControlScheme.WASD, -7, -15, 1);
+		addAt(bk, 0,0);
+		PlatformController hc = new PlatformController(PlatformControlScheme.WASD, -7, -17, 1);
 		PixelPotato hero = new PixelPotato();
 		hero.setAnchorPositionY(getHeight()/(-2));
 		addAt(new SolidPlatform(), 1280/2, 715);
-		addAt(hero, 1280/2, 720/2);
+		addAt(hero, 20, 330);
 		hero.addController(hc);
 	}
 }
