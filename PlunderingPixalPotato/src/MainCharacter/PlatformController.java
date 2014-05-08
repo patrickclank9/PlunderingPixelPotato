@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Set;
 import jgame.Context;
 import jgame.GObject;
+import jgame.SoundManager;
 import jgame.controller.Controller;
+import PPP.PlunderingPixelPotato;
 import Platforms.Platform;
 import MainCharacter.PlatformControlScheme;
 
@@ -137,6 +139,7 @@ public class PlatformController implements Controller {
 			if (jump) {
 
 				vy = maxJump;
+				SoundManager.forClass(PlunderingPixelPotato.class).play("Bounce.wav");
 
 			} else {
 

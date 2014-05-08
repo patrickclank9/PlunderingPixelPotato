@@ -1,6 +1,7 @@
 package PPP;
 
 import java.awt.Color;
+
 import Platforms.SolidPlatform;
 import MainCharacter.PlatformControlScheme;
 import MainCharacter.PlatformController;
@@ -8,13 +9,13 @@ import MainCharacter.PixelPotato;
 import jgame.GContainer;
 import jgame.GSprite;
 import jgame.ImageCache;
+import jgame.SoundManager;
 
 public class PPPGameView extends GContainer{
 	
 	public PPPGameView(){
 		setSize(1280, 720);
 		this.setBackgroundColor(Color.BLACK);
-		
 	}
 	public void viewShown() {
 		initScrollGameView();
