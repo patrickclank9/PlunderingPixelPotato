@@ -6,6 +6,9 @@ public class Bank {
 	public Bank(int money) {
 		setMoney(money);
 	}
+	public Bank() {
+		setMoney(0);
+	}
 
 	public static int getMoney() {
 		return totalMoney;

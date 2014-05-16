@@ -1,18 +1,27 @@
 package PPP;
 
 import java.awt.Color;
-
+import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import Platforms.Shrekform;
 import Platforms.SolidPlatform;
 import MainCharacter.PlatformControlScheme;
 import MainCharacter.PlatformController;
 import MainCharacter.PixelPotato;
+import Mechanics.Bank;
 import Mechanics.Pixel;
+import jgame.Context;
 import jgame.GContainer;
+import jgame.GMessage;
+import jgame.GObject;
 import jgame.GSprite;
 import jgame.ImageCache;
+import jgame.listener.FrameListener;
 
 public class PPPGameView extends GContainer {
+
+	private Bank bank;
+	private static GMessage gm;
 
 	public PPPGameView() {
 		setSize(1280, 720);
@@ -24,77 +33,47 @@ public class PPPGameView extends GContainer {
 	}
 
 	public void initScrollGameView() {
+		//Create and place Background
 		GSprite bk = new GSprite(ImageCache.getImage("Background/1.png"));
 		bk.setAnchorTopLeft();
 		addAt(bk, 0, 0);
-		PlatformController hc = new PlatformController(
-				PlatformControlScheme.WASD, -7, -17, 1);
+		
+		//Create, place, and add PlateformControler to Hero
 		PixelPotato hero = new PixelPotato();
 		hero.setAnchorPositionY(getHeight() / (-2));
+		hero.addController(new PlatformController(PlatformControlScheme.WASD, -12, -24, 3));
 		addAt(hero, 20, 330);
+		
 		addAt(new SolidPlatform(), 1280 / 2, 715);
 		addAt(new Shrekform(), 474, 598);
 		addAt(new Shrekform(), 844, 501);
 		addAt(new Shrekform(), 1158, 417);
-		int[] x = new int[] { 129, 180, 232, 284, 336, 391, 448, 503, 556, 606,
-				664, 721, 780, 830, 886, 940, 989, 1038, 1083, 1110, 1119,
-				1123, 1114, 1092, 1063, 1036, 1001, 959, 910, 860, 809, 756,
-				701, 651, 597, 547, 491, 440, 388, 336, 285, 1202, 1150, 1103,
-				1060, 1041, 1018, 1006, 991, 993, 998, 1000, 1003, 1008, 1010,
-				1012, 1016, 1018, 1019, 1021, 1022, 1024, 1025, 1026, 1027,
-				1027, 1026, 1025, 1023, 1021, 1018, 1016, 1013, 1008, 1005,
-				1003, 999, 998, 997, 996, 995, 995, 996, 997, 998, 1001, 1002,
-				1005, 1007, 1010, 1013, 1015, 1017, 1018, 1019, 1019, 1019,
-				1018, 1017, 1014, 1013, 1011, 1008, 1006, 1004, 1003, 1003,
-				1003, 1003, 1004, 1006, 1007, 1008, 1012, 1015, 1017, 1018,
-				1019, 1020, 1021, 1021, 1021, 1020, 1016, 1014, 1013, 1010,
-				1008, 1006, 1005, 1005, 1005, 1006, 1006, 1007, 1009, 1011,
-				1013, 1015, 1017, 1017, 1016, 1015, 1014, 1013, 1010, 1009,
-				1008, 1008, 1009, 1010, 1011, 1012, 1013, 1013, 1013, 1012,
-				1011, 1009, 1008, 1006, 1004, 1003, 1003, 1003, 1004, 1005,
-				1008, 1011, 1012, 1014, 1015, 1016, 1016, 1016, 1015, 1013,
-				1009, 1007, 1004, 1002, 999, 998, 997, 996, 996, 997, 999,
-				1001, 1006, 1008, 1012, 1014, 1016, 1017, 1018, 1019, 1019,
-				1019, 1018, 1017, 1014, 1012, 1010, 1007, 1005, 1002, 1001,
-				999, 999, 999, 999, 1001, 1004, 1006, 1010, 1013, 1016, 1018,
-				1019, 1021, 1021, 1022, 1022, 1022, 1020, 1019, 1016, 1014,
-				1013, 1011, 1009, 1006, 1005, 1003, 1001, 1000, 999, 999, 1000,
-				1002, 1005, 1007, 1011, 1013, 1017, 1019, 1021, 1022, 1023,
-				1023, 1023, 1022, 1020, 1017, 1015, 1011, 1009, 1005, 1004,
-				1002, 999, 998, 998, 998, 1001, 1002, 1006, 1009, 1013, 1016,
-				1018, 1019, 1021, 1021, 1021, 1021, 1020, 1017, 1015, 1013,
-				1011, 1008, 1006, 1005, 1003, 1002, 1002, 1003, 1007, 1009,
-				1011, 1016, 1018, 1020, 1021, 1021, 1021, 1019, 1018, 1015,
-				1013, 1011, 1008, 1007, 1005, 1003, 1002, 1002 };
-		int[] y = new int[] { 118, 128, 131, 128, 124, 122, 118, 114, 111, 110,
-				110, 110, 110, 112, 119, 128, 145, 165, 192, 236, 291, 344,
-				398, 445, 494, 538, 574, 607, 631, 644, 648, 652, 655, 658,
-				658, 655, 655, 656, 658, 663, 664, 666, 669, 644, 611, 561,
-				650, 639, 646, 645, 642, 641, 641, 640, 640, 640, 642, 643,
-				644, 646, 647, 648, 650, 652, 654, 656, 659, 660, 662, 664,
-				665, 667, 667, 668, 668, 668, 667, 666, 665, 664, 660, 657,
-				656, 654, 653, 650, 649, 647, 646, 645, 645, 645, 645, 646,
-				647, 649, 651, 652, 654, 656, 657, 658, 658, 658, 657, 656,
-				653, 651, 648, 645, 644, 643, 642, 641, 641, 642, 643, 644,
-				645, 646, 648, 651, 652, 656, 657, 659, 660, 660, 659, 657,
-				655, 653, 652, 650, 649, 647, 646, 646, 646, 646, 648, 650,
-				652, 653, 655, 656, 657, 656, 654, 653, 651, 649, 648, 647,
-				649, 651, 652, 653, 655, 656, 656, 655, 652, 650, 648, 647,
-				646, 645, 645, 646, 647, 648, 649, 651, 653, 655, 657, 661,
-				663, 664, 665, 664, 663, 662, 658, 656, 651, 648, 646, 642,
-				641, 640, 640, 641, 642, 644, 646, 648, 650, 652, 653, 656,
-				658, 659, 660, 660, 660, 659, 657, 654, 652, 650, 648, 644,
-				642, 641, 641, 641, 642, 643, 645, 647, 648, 651, 653, 656,
-				658, 662, 663, 664, 665, 666, 666, 665, 664, 661, 659, 656,
-				653, 651, 647, 643, 642, 640, 640, 640, 641, 643, 645, 646,
-				649, 652, 654, 656, 661, 663, 665, 666, 666, 665, 664, 661,
-				657, 655, 652, 646, 644, 640, 639, 638, 640, 641, 643, 646,
-				649, 651, 653, 655, 657, 659, 659, 660, 660, 660, 659, 656,
-				655, 652, 648, 644, 643, 642, 641, 641, 642, 645, 647, 651,
-				654, 656, 660, 662, 663, 663, 662, 660, 654, 652, 648 };
-		for (int a = 0; a < x.length - 1; a++) {
-			addAt(new Pixel(), x[a], y[a]);
-		}
-		hero.addController(hc);
+		
+		int[] pixelx = new int[] { 637, 612, 585, 559, 552, 551, 576, 602, 628, 582, 606, 636 };
+		int[] pixely = new int[] { 527, 530, 530, 529, 504, 479, 476, 476, 476, 503, 499, 497 };
+		for (int a = 0; a < pixelx.length - 1; a++) addAt(new Pixel(), pixelx[a], pixely[a]);
+		bank = new Bank();
+		gm = new GMessage();
+		GSprite bankTile = createSprite();
+		addAt(bankTile, 1200, 40);
+
+		FrameListener fl = new FrameListener() {
+			@Override
+			public void invoke(GObject target, Context context) {
+				gm.setText(bank.toString());
+			}
+		};
+		addListener(fl);
+	}
+
+	public static GSprite createSprite() {
+		BufferedImage img = ImageCache.forClass(PlunderingPixelPotato.class).get("Moneypad.png");
+		GSprite gs = new GSprite(img);
+		gm.setAlignmentX(0.5);
+		gm.setAlignmentY(0.5);
+		gm.setFontSize(18);
+		gm.setColor(Color.white);
+		gs.addAtCenter(gm);
+		return gs;
 	}
 }

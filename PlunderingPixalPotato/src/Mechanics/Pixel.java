@@ -23,6 +23,7 @@ public class Pixel extends GSprite{
 					
 				}
 				SoundManager.forClass(PlunderingPixelPotato.class).play(getSound());
+				Bank.addMoney(100);
 				target.removeSelf();
 			}
 		};
