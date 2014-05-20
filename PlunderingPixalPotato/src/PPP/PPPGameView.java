@@ -1,9 +1,8 @@
 package PPP;
 
 import java.awt.Color;
-import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import Platforms.Shrekform;
+import Platforms.Blockform;
 import Platforms.SolidPlatform;
 import MainCharacter.PlatformControlScheme;
 import MainCharacter.PlatformController;
@@ -34,24 +33,28 @@ public class PPPGameView extends GContainer {
 
 	public void initScrollGameView() {
 		//Create and place Background
-		GSprite bk = new GSprite(ImageCache.getImage("Background/1.png"));
+		GSprite bk = new GSprite(ImageCache.getImage("Background/3.png"));
 		bk.setAnchorTopLeft();
 		addAt(bk, 0, 0);
 		
 		//Create, place, and add PlateformControler to Hero
 		PixelPotato hero = new PixelPotato();
 		hero.setAnchorPositionY(getHeight() / (-2));
-		hero.addController(new PlatformController(PlatformControlScheme.WASD, -12, -24, 3));
+		hero.addController(new PlatformController(PlatformControlScheme.WASD, -10, -20, 1.5));
 		addAt(hero, 20, 330);
 		
 		addAt(new SolidPlatform(), 1280 / 2, 715);
-		addAt(new Shrekform(), 474, 598);
-		addAt(new Shrekform(), 844, 501);
-		addAt(new Shrekform(), 1158, 417);
 		
+		//Create and place all Block Platforms
+		int[] platformx = new int[] { 302, 676, 506, 1008, 857, 507, 187 };
+		int[] platformy = new int[] { 567, 506, 612, 469, 385, 314, 269 };
+		for (int a = 0; a < platformx.length - 1; a++) addAt(new Blockform(), platformx[a], platformy[a]);
+		
+		//Create and place all Pixels
 		int[] pixelx = new int[] { 637, 612, 585, 559, 552, 551, 576, 602, 628, 582, 606, 636 };
 		int[] pixely = new int[] { 527, 530, 530, 529, 504, 479, 476, 476, 476, 503, 499, 497 };
 		for (int a = 0; a < pixelx.length - 1; a++) addAt(new Pixel(), pixelx[a], pixely[a]);
+		
 		bank = new Bank();
 		gm = new GMessage();
 		GSprite bankTile = createSprite();
