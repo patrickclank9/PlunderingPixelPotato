@@ -33,7 +33,7 @@ public class PPPGameView extends GContainer {
 
 	public void initScrollGameView() {
 		//Create and place Background
-		GSprite bk = new GSprite(ImageCache.getImage("Background/3.png"));
+		GSprite bk = new GSprite(ImageCache.getImage("Background/" + ((int) Math.random() * 3 + 1) + ".png"));
 		bk.setAnchorTopLeft();
 		addAt(bk, 0, 0);
 		

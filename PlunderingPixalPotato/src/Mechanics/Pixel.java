@@ -1,7 +1,5 @@
 package Mechanics;
 
-import java.util.List;
-
 import MainCharacter.PixelPotato;
 import PPP.PlunderingPixelPotato;
 import jgame.Context;
@@ -18,21 +16,14 @@ public class Pixel extends GSprite{
 
 			@Override
 			public void invoke(GObject target, Context context) {
-				List<PixelPotato> pixelPotatos = context.hitTestClass(PixelPotato.class);
-				for (PixelPotato pixelPotato : pixelPotatos) {
-					
-				}
-				SoundManager.forClass(PlunderingPixelPotato.class).play(getSound());
+//				List<PixelPotato> pixelPotatos = context.hitTestClass(PixelPotato.class);
+//				for (PixelPotato pixelPotato : pixelPotatos)
+				SoundManager.forClass(PlunderingPixelPotato.class).play("Pixelget/" + (int)(Math.random() * 5 + 1) + ".wav");
 				Bank.addMoney(100);
 				target.removeSelf();
 			}
 		};
 		addListener(htl);
-	}
-	
-	public String getSound() {
-		int a = (int)(Math.random() * 5 + 1);
-		return "Pixelget/" + a + ".wav";
 	}
 }
 
