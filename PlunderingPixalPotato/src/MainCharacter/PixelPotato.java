@@ -17,11 +17,9 @@ public class PixelPotato extends GSprite{
 		HitTestListener htl = new HitTestListener(deathSpike.class) {
 
 			@Override
-			public void invoke(GObject target, Context context) {
-//				List<PixelPotato> pixelPotatos = context.hitTestClass(PixelPotato.class);
-//				for (PixelPotato pixelPotato : pixelPotatos)
+			public void invoke(GObject target, Context context) {  
 				SoundManager.forClass(PlunderingPixelPotato.class).play("Death.wav");
-				Bank.setMoney(0);
+//				Bank.setMoney(0);
 				
 				target.removeSelf();
 			}

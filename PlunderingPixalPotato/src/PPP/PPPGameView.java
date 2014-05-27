@@ -23,6 +23,15 @@ public class PPPGameView extends GContainer {
 
 	private Bank bank;
 	private static GMessage gm;
+	
+	public int[] spikex = new int[] { 676, 506, 857, 507, };
+	public int[] spikey /*Wikey*/ = new int[] { 498, 604, 377, 306, };
+	
+	public int[] platformx = new int[] { 302, 676, 506, 1008, 857, 507, 187 };
+	public int[] platformy = new int[] { 567, 506, 612, 469, 385, 314, 269 };
+	
+	public int[] pixelx = new int[] { 637, 612, 585, 559, 552, 551, 576, 602, 628, 582, 606, 636 };
+	public int[] pixely = new int[] { 527, 530, 530, 529, 504, 479, 476, 476, 476, 503, 499, 497 };
 
 	public PPPGameView() {
 		setSize(1280, 720);
@@ -48,18 +57,12 @@ public class PPPGameView extends GContainer {
 		addAt(new SolidPlatform(), 1280 / 2, 715);
 		
 		//Create and place all deathSpikes
-		int[] spikex = new int[] { 302, 676, 506, 1008, 857, 507, 187 };
-		int[] spikey /*Wikey*/ = new int[] { 559, 498, 604, 461, 377, 306, 261 };
 		for (int a = 0; a < spikex.length - 1; a++) addAt(new deathSpike(), spikex[a], spikey[a]);
 		
 		//Create and place all Block Platforms
-		int[] platformx = new int[] { 302, 676, 506, 1008, 857, 507, 187 };
-		int[] platformy = new int[] { 567, 506, 612, 469, 385, 314, 269 };
 		for (int a = 0; a < platformx.length - 1; a++) addAt(new Blockform(), platformx[a], platformy[a]);
 		
 		//Create and place all Pixels
-		int[] pixelx = new int[] { 637, 612, 585, 559, 552, 551, 576, 602, 628, 582, 606, 636 };
-		int[] pixely = new int[] { 527, 530, 530, 529, 504, 479, 476, 476, 476, 503, 499, 497 };
 		for (int a = 0; a < pixelx.length - 1; a++) addAt(new Pixel(), pixelx[a], pixely[a]);
 		
 		bank = new Bank();
