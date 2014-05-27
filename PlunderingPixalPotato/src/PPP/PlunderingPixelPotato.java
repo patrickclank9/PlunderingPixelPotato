@@ -25,6 +25,6 @@ public class PlunderingPixelPotato extends Game{
 		SoundManager.forClass(PlunderingPixelPotato.class).loopForever("Zalgo.ogg");
 	}
 	public enum Views {
-		MENU, GAME;
+		MENU, GAME, LOSE;
 	}
 }

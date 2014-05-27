@@ -2,8 +2,10 @@ package PPP;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
+
 import Platforms.Blockform;
 import Platforms.SolidPlatform;
+import Platforms.deathSpike;
 import MainCharacter.PlatformControlScheme;
 import MainCharacter.PlatformController;
 import MainCharacter.PixelPotato;
@@ -44,6 +46,11 @@ public class PPPGameView extends GContainer {
 		addAt(hero, 20, 330);
 		
 		addAt(new SolidPlatform(), 1280 / 2, 715);
+		
+		//Create and place all deathSpikes
+		int[] spikex = new int[] { 302, 676, 506, 1008, 857, 507, 187 };
+		int[] spikey /*Wikey*/ = new int[] { 559, 498, 604, 461, 377, 306, 261 };
+		for (int a = 0; a < spikex.length - 1; a++) addAt(new deathSpike(), spikex[a], spikey[a]);
 		
 		//Create and place all Block Platforms
 		int[] platformx = new int[] { 302, 676, 506, 1008, 857, 507, 187 };
