@@ -37,7 +37,7 @@ public class PPPGameOverView extends GContainer{
 		FrameListener fl = new FrameListener() {
 			@Override
 			public void invoke(GObject target, Context context) {
-				gm.setText("Score:" + PPPGameView.Money);
+				gm.setText("Score: " + PPPGameView.Money);
 			}
 		};
 		addListener(fl);

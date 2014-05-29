@@ -8,6 +8,7 @@ import jgame.GObject;
 import jgame.ImageCache;
 import jgame.GSprite;
 import jgame.SoundManager;
+import jgame.listener.BoundaryRemovalListener;
 import jgame.listener.HitTestListener;
 
 public class PixelPotato extends GSprite{
@@ -24,6 +25,14 @@ public class PixelPotato extends GSprite{
 			}
 		};
 		addListener(htl);
+		addListener(new BoundaryRemovalListener() {
+			@Override
+			public void invoke(GObject target, Context context) {
+				SoundManager.forClass(PlunderingPixelPotato.class).play("Fall.wav");
+				context.setCurrentGameView(Views.LOSE);
+				target.removeSelf();
+			}
+		});
 	}
 	
 }
