@@ -21,6 +21,7 @@ public class PlunderingPixelPotato extends Game{
 		setRootContainer(root);
 		root.addView(Views.MENU, new PPPMenuView());
 		root.addView(Views.GAME, new PPPGameView());
+		root.addView(Views.LOSE, new PPPGameOverView());
 		setTargetFPS(40);
 		SoundManager.forClass(PlunderingPixelPotato.class).loopForever("Zalgo.ogg");
 	}

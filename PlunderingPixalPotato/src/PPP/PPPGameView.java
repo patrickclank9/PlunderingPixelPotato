@@ -23,6 +23,7 @@ public class PPPGameView extends GContainer {
 
 	private Bank bank;
 	private static GMessage gm;
+	public static int Money;
 	
 	public int[] spikex = new int[] { 676, 506, 857, 507, };
 	public int[] spikey /*Wikey*/ = new int[] { 498, 604, 377, 306, };
@@ -74,6 +75,7 @@ public class PPPGameView extends GContainer {
 			@Override
 			public void invoke(GObject target, Context context) {
 				gm.setText(bank.toString());
+				Money = Bank.getMoney();
 			}
 		};
 		addListener(fl);

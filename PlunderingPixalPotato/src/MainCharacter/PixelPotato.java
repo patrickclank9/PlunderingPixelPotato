@@ -1,7 +1,7 @@
 package MainCharacter;
 
-import Mechanics.Bank;
 import PPP.PlunderingPixelPotato;
+import PPP.PlunderingPixelPotato.Views;
 import Platforms.deathSpike;
 import jgame.Context;
 import jgame.GObject;
@@ -19,8 +19,7 @@ public class PixelPotato extends GSprite{
 			@Override
 			public void invoke(GObject target, Context context) {  
 				SoundManager.forClass(PlunderingPixelPotato.class).play("Death.wav");
-//				Bank.setMoney(0);
-				
+				context.setCurrentGameView(Views.LOSE);
 				target.removeSelf();
 			}
 		};
