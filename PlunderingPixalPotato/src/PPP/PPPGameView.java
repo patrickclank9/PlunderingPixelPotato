@@ -20,7 +20,7 @@ import jgame.listener.FrameListener;
 
 public class PPPGameView extends GContainer {
 
-	private Bank bank;
+	public static Bank bank;
 	private static GMessage gm;
 	public static int Money;
 
@@ -30,9 +30,9 @@ public class PPPGameView extends GContainer {
 			471, 342, 345, 344, 344, 216, 278, 341 };
 
 	public int[] platformx = new int[] { 192, 320, 575, 64, 833, 960, 1151,
-			1215, 896, 639, 448, 127, 64 };
+			1215, 896, 639, 448, 127, 64, 14 };
 	public int[] platformy = new int[] { 599, 535, 600, 695, 664, 537, 407,
-			279, 278, 217, 151, 343, 216 };
+			279, 278, 217, 151, 343, 216, 198 };
 
 	public int[] pixelx = new int[] { 61, 88, 164, 308, 330, 233, 454, 479,
 			508, 529, 552, 570, 598, 667, 640, 614, 611, 634, 661, 684, 649,
@@ -61,6 +61,7 @@ public class PPPGameView extends GContainer {
 	}
 
 	public void initScrollGameView() {
+		removeAllChildren();
 		// Create and place Background
 		GSprite bk = new GSprite(ImageCache.getImage("Background/"
 				+ ((int) Math.random() * 3 + 1) + ".png"));
@@ -74,7 +75,7 @@ public class PPPGameView extends GContainer {
 				-10, -20, 1.5));
 		addAt(hero, 65, 300);
 
-		// addAt(new SolidPlatform(), 1280 / 2, 715);
+//		addAt(new SolidPlatform(), 1280 / 2, 715);
 
 		// Create and place all deathSpikes
 		for (int a = 0; a < spikex.length - 1; a++)

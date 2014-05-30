@@ -18,10 +18,6 @@ public class Bank {
 		totalMoney += money;
 	}
 
-	public static void takeMoney(int money) {
-		totalMoney -= money;
-	}
-
 	public static void setMoney(int money) {
 		totalMoney = money;
 	}

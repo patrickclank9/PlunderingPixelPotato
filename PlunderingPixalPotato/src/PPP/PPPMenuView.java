@@ -3,6 +3,8 @@ package PPP;
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+
+import Mechanics.Bank;
 import PPP.PlunderingPixelPotato.Views;
 import jgame.ButtonState;
 import jgame.Context;
@@ -43,6 +45,7 @@ public class PPPMenuView extends GContainer{
 			public void mouseClicked(Context context) {
 				super.mouseClicked(context);
 				context.setCurrentGameView(Views.GAME);
+				Bank.setMoney(0);
 			}
 		};
 		mbPlay.addListener(blPlay);
